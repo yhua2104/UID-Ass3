@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pancake On The Rocks</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <a href="index.html" class="header__icon">&#8962;</a>
+    <nav class="header__nav">
+      <a href="#" class="header__icon">&#9776;</a>
+      <a href="search.html" class="header__icon">&#128269;</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <main class="main">
+
+    <section class="hero">
+      <!-- Wishlist -->
+      <button class="hero__wishlist" aria-label="Add to wishlist">&#9825;</button>
+
+      <h1 class="hero__title">Pancake On The Rocks</h1>
+      <p class="hero__meta"><span class="hero__star">&#9733;</span> time: 24/7</p>
+      <p class="hero__address">22 PLAYFAIR ST, THE ROCKS</p>
+
+      <!-- Hero banner image -->
+      <div class="hero__banner">
+        <img src="hero-banner.jpg" alt="Pancake On The Rocks huge poster" />
+      </div>
+    </section>
+
+    <!-- CATEGORY TABS -->
+    <section class="categories">
+      <div class="categories__scroll">
+        <button class="category-btn category-btn--active">🍩 Sweet</button>
+        <button class="category-btn">🥚 Savory</button>
+        <button class="category-btn">🍖 Ribs</button>
+        <button class="category-btn">☕ Drinks</button>
+      </div>
+    </section>
+
+    <!-- VIEW FULL MENU BUTTON -->
+    <div class="menu-button">
+      <a href="menu.html" class="btn btn--primary">VIEW FULL MENU</a>
+    </div>
+
+    <!-- FEATURED PRODUCTS GRID -->
+    <section class="featured">
+      <div class="product-grid">
+
+        <a href="product.html?id=1" class="product-card">
+          <img src="images/delicious-pancakes.jpg" alt="Delicious Pancakes" class="product-card__img" />
+          <h3 class="product-card__name">Delicious Pancakes</h3>
+          <p class="product-card__price">$12</p>
+        </a>
+
+        <a href="product.html?id=2" class="product-card">
+          <img src="images/pistachio-pancakes.jpg" alt="Pistachio Pancakes" class="product-card__img" />
+          <h3 class="product-card__name">Pistachio Pancakes</h3>
+          <p class="product-card__price">$15</p>
+        </a>
+
+        <a href="product.html?id=3" class="product-card">
+          <img src="images/banana-pancakes.jpg" alt="Banana Pancakes" class="product-card__img" />
+          <h3 class="product-card__name">Banana Pancakes</h3>
+          <p class="product-card__price">$50</p>
+        </a>
+
+        <a href="product.html?id=4" class="product-card">
+          <img src="images/coffee-pancakes.jpg" alt="Coffee Pancakes" class="product-card__img" />
+          <h3 class="product-card__name">Coffee Pancakes</h3>
+          <p class="product-card__price">$10</p>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!--BOTTOM NAVIGATION (Mobile) -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav__item bottom-nav__item--active">
+      <span class="bottom-nav__icon">&#8962;</span>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="search.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128269;</span>
+      <span class="bottom-nav__label">Search</span>
+    </a>
+    <a href="#" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128276;</span>
+      <span class="bottom-nav__label">Notifications</span>
+    </a>
+    <a href="#" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128172;</span>
+      <span class="bottom-nav__label">Messages</span>
+    </a>
+    <a href="cart.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128722;</span>
+      <span class="bottom-nav__label">Cart</span>
+    </a>
+  </nav>
+
+</body>
+</html>
