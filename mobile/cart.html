@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart – Pancake On The Rocks</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- PAGE TITLE -->
+  <div class="cart-header">
+    <h1 class="cart-header__title">Your Cart (3 items)</h1>
+  </div>
+
+  <main class="cart-main">
+
+    <!-- CART ITEMS -->
+    <div class="cart-section">
+      <div class="cart-section__top">
+        <span class="cart-section__label">Your Cart</span>
+        <a href="menu.html" class="cart-section__link">View Menu</a>
+      </div>
+
+      <!-- Item 1 -->
+      <div class="cart-item">
+        <img src="images/delicious-pancakes.jpg" alt="Delicious Pancakes" class="cart-item__img" />
+        <div class="cart-item__info">
+          <div class="cart-item__top">
+            <h3 class="cart-item__name">Delicious Pancakes</h3>
+            <span class="cart-item__price">$15</span>
+          </div>
+          <p class="cart-item__desc">Spicy chicken wings</p>
+          <div class="cart-item__qty">Qty 1 &#8964;</div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="cart-item">
+        <img src="images/cheese-burst-pizza.jpg" alt="Cheese Burst Pizza" class="cart-item__img" />
+        <div class="cart-item__info">
+          <div class="cart-item__top">
+            <h3 class="cart-item__name">Cheese Burst Pizza</h3>
+            <span class="cart-item__price">$12.95</span>
+          </div>
+          <p class="cart-item__desc">Extra cheese</p>
+          <div class="cart-item__qty">Qty 1 &#8964;</div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="cart-item">
+        <img src="images/banana-pancakes.jpg" alt="Banana Pancakes" class="cart-item__img" />
+        <div class="cart-item__info">
+          <div class="cart-item__top">
+            <h3 class="cart-item__name">Banana Pancakes</h3>
+            <span class="cart-item__price">$15</span>
+          </div>
+          <p class="cart-item__desc">With cheese dip</p>
+          <div class="cart-item__qty">Qty 1 &#8964;</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROMO CODE -->
+    <div class="promo-row">
+      <span class="promo-row__icon">&#128226;</span>
+      <input type="text" class="promo-row__input" placeholder="Promo Code" />
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <div class="order-summary">
+      <div class="order-summary__header">
+        <span class="order-summary__title">Order Summary</span>
+        <span class="order-summary__time">45 mins</span>
+      </div>
+
+      <div class="order-summary__row">
+        <span>Title</span>
+        <span>$1.00</span>
+      </div>
+      <div class="order-summary__row">
+        <span>Delivery Fee</span>
+        <span>$3.95</span>
+      </div>
+      <div class="order-summary__row">
+        <span>Discount</span>
+        <span class="order-summary__discount">-$5.00</span>
+      </div>
+      <div class="order-summary__row">
+        <span>Tax</span>
+        <span>$2.00</span>
+      </div>
+      <div class="order-summary__row order-summary__row--total">
+        <span>Total</span>
+        <span>$39.80</span>
+      </div>
+    </div>
+
+    <!-- PROCEED TO ORDER BUTTON -->
+    <div class="cart-cta">
+      <a href="checkout.html" class="btn btn--primary">PROCEED TO ORDER</a>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#8962;</span>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="search.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128269;</span>
+      <span class="bottom-nav__label">Search</span>
+    </a>
+    <a href="#" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128276;</span>
+      <span class="bottom-nav__label">Notifications</span>
+    </a>
+    <a href="#" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128172;</span>
+      <span class="bottom-nav__label">Messages</span>
+    </a>
+    <a href="cart.html" class="bottom-nav__item bottom-nav__item--active">
+      <span class="bottom-nav__icon">&#128722;</span>
+      <span class="bottom-nav__label">Cart</span>
+    </a>
+  </nav>
+
+  <script src="js/cart.js"></script>
+</body>
+</html>
