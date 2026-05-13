@@ -21,51 +21,20 @@
         <span class="cart-section__label">Your Cart</span>
         <a href="menu.html" class="cart-section__link">View Menu</a>
       </div>
-
-      <!-- Item 1 -->
-      <div class="cart-item">
-        <img src="images/delicious-pancakes.jpg" alt="Delicious Pancakes" class="cart-item__img" />
-        <div class="cart-item__info">
-          <div class="cart-item__top">
-            <h3 class="cart-item__name">Delicious Pancakes</h3>
-            <span class="cart-item__price">$15</span>
-          </div>
-          <p class="cart-item__desc">Spicy chicken wings</p>
-          <div class="cart-item__qty">Qty 1 &#8964;</div>
-        </div>
-      </div>
-
-      <!-- Item 2 -->
-      <div class="cart-item">
-        <img src="images/cheese-burst-pizza.jpg" alt="Cheese Burst Pizza" class="cart-item__img" />
-        <div class="cart-item__info">
-          <div class="cart-item__top">
-            <h3 class="cart-item__name">Cheese Burst Pizza</h3>
-            <span class="cart-item__price">$12.95</span>
-          </div>
-          <p class="cart-item__desc">Extra cheese</p>
-          <div class="cart-item__qty">Qty 1 &#8964;</div>
-        </div>
-      </div>
-
-      <!-- Item 3 -->
-      <div class="cart-item">
-        <img src="images/banana-pancakes.jpg" alt="Banana Pancakes" class="cart-item__img" />
-        <div class="cart-item__info">
-          <div class="cart-item__top">
-            <h3 class="cart-item__name">Banana Pancakes</h3>
-            <span class="cart-item__price">$15</span>
-          </div>
-          <p class="cart-item__desc">With cheese dip</p>
-          <div class="cart-item__qty">Qty 1 &#8964;</div>
-        </div>
-      </div>
+    <!-- EMPTY CART -->
+    <div class="cart-empty">
+      <p class="cart-empty__text">Your cart is empty</p>
+      <a href="menu.html" class="btn btn--primary">Browse Menu</a>
     </div>
 
+</div>
+
+
     <!-- PROMO CODE -->
-    <div class="promo-row">
-      <span class="promo-row__icon">&#128226;</span>
-      <input type="text" class="promo-row__input" placeholder="Promo Code" />
+    <div class="checkout-promo">
+      <span class="checkout-promo__label">Add promo code</span>
+      <input type="text" class="promo-input" placeholder="Add promo code" id="promo-code" />
+      <button class="promo-apply-btn">Apply</button>
     </div>
 
     <!-- ORDER SUMMARY -->

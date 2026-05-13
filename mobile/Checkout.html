@@ -1,11 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout – Pancake On The Rocks</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    
+
+  <!-- PAGE TITLE -->
+  <div class="checkout-header">
+    <h1 class="checkout-header__title">Checkout</h1>
+  </div>
+
+  <main class="checkout-main">
+
+    <!-- TAB / PICK UP TOGGLE -->
+    <div class="checkout-toggle">
+      <button class="toggle-btn toggle-btn--active">&#9711; Tab</button>
+      <button class="toggle-btn">&#127873; Pick up</button>
+    </div>
+
+    <!-- DELIVERY ADDRESS -->
+    <div class="input-row">
+      <span class="input-row__icon">📍</span>
+      <input type="text" class="input-row__field" placeholder="Enter delivery address" id="delivery-address" />
+    </div>
+
+    <!-- PAYMENT METHOD -->
+    <div class="checkout-section">
+      <h2 class="checkout-section__title">Payment Method</h2>
+
+      <!-- Card Number -->
+      <div class="input-row">
+        <span class="input-row__icon">&#128179;</span>
+        <input type="text" class="input-row__field" placeholder="Card Number" maxlength="19" id="card-number" />
+        <span class="input-row__icon">&#128247;</span>
+      </div>
+
+      <!-- MM/YY and CVV side by side -->
+      <div class="input-half-row">
+        <input type="text" class="input-half" placeholder="MM/YY" maxlength="5" id="expiry" />
+        <input type="text" class="input-half" placeholder="CVV" maxlength="3" id="cvv" />
+      </div>
+
+      <!-- Full Name -->
+      <div class="input-row">
+        <span class="input-row__icon">&#128100;</span>
+        <input type="text" class="input-row__field" placeholder="Full Name" id="full-name" />
+      </div>
+    </div>
+
+    <!-- DELIVERY OPTIONS -->
+    <div class="checkout-section">
+      <h2 class="checkout-section__title">Delivery Options</h2>
+      <select class="delivery-select" id="delivery-time">
+        <option value="">Select arrival time</option>
+        <option value="5pm">Arrives by 5 PM</option>
+        <option value="6pm">Arrives by 6 PM</option>
+        <option value="7pm">Arrives by 7 PM</option>
+        <option value="asap">As soon as possible</option>
+      </select>
+    </div>
+
+    <!-- PICK UP -->
+    <div class="checkout-section">
+      <h2 class="checkout-section__title">Pick Up</h2>
+      <select class="delivery-select" id="store-location">
+        <option value="">Select a store</option>
+        <option value="rocks">The Rocks – 22 Playfair St</option>
+        <option value="cbd">Sydney CBD – 10 George St</option>
+       <option value="surry">Surry Hills – 5 Crown St</option>
+      </select>
+    </div>
+
+    <!-- PROMO CODE -->
+    <div class="checkout-promo">
+      <span class="checkout-promo__label">Add promo code</span>
+      <input type="text" class="promo-input" placeholder="Add promo code" id="promo-code" />
+      <button class="promo-apply-btn">Apply</button>
+    </div>
+
+    <!-- ORDER TOTAL -->
+    <div class="checkout-total">
+      <div class="checkout-total__row">
+        <span>Subtotal</span>
+        <span id="Subtotal">$40.00</span>
+      </div>
+      <div class="checkout-total__row">
+        <span>Delivery</span>
+      </div>
+      <div class="checkout-total__row checkout-total__row--bold">
+        <span>Estimated Total</span>
+        <span id="estimated-total">$45.99</span>
+      </div>
+    </div>
+
+    <!-- PAY NOW BUTTON -->
+    <div class="checkout-cta">
+      <button class="btn btn--primary" id="pay-now">PAY NOW</button>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#8962;</span>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="search.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128269;</span>
+      <span class="bottom-nav__label">Search</span>
+    </a>
+    <a href="#" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128276;</span>
+      <span class="bottom-nav__label">Notifications</span>
+    </a>
+    <a href="#" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128172;</span>
+      <span class="bottom-nav__label">Messages</span>
+    </a>
+    <a href="cart.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128722;</span>
+      <span class="bottom-nav__label">Cart</span>
+    </a>
+  </nav>
+
+  <script src="js/checkout.js"></script>
 </body>
 </html>

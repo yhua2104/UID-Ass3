@@ -24,6 +24,9 @@
     <h1 class="product-detail__name">Delicious Pancakes</h1>
     <p class="product-detail__price">$15</p>
 
+    <!-- DESCRIPTION -->
+    <p class="product-detail__desc">Chocolate pancakes, strawberries, cream, and chocolate ice cream.</p>
+
     <!-- QUANTITY -->
     <div class="quantity-row">
       <span class="quantity-row__label">Quantity</span>
@@ -33,16 +36,65 @@
         <button class="quantity-btn" id="increase">&#8744;</button>
       </div>
     </div>
+    
+    <!-- CUSTOMISATION OPTIONS -->
 
+    <!-- Make it Gluten Free -->
+    <div class="custom-section">
+      <h3 class="custom-section__title">Make it Gluten Free</h3>
+      <label class="custom-option">
+        <input type="checkbox" class="custom-checkbox" data-price="2" />
+        <span class="custom-option__name">Gluten Free</span>
+        <span class="custom-option__price">+$2.00</span>
+      </label>
+    </div>
+
+    <!-- Add Sauce -->
+    <div class="custom-section">
+      <h3 class="custom-section__title">Add Sauce</h3>
+      <label class="custom-option">
+        <input type="checkbox" class="custom-checkbox" data-price="2.50" />
+        <span class="custom-option__name">Chocolate Sauce</span>
+        <span class="custom-option__price">+$2.50</span>
+      </label>
+      <label class="custom-option">
+        <input type="checkbox" class="custom-checkbox" data-price="2.50" />
+        <span class="custom-option__name">Strawberry Sauce</span>
+        <span class="custom-option__price">+$2.50</span>
+      </label>
+      <label class="custom-option">
+        <input type="checkbox" class="custom-checkbox" data-price="2.50" />
+        <span class="custom-option__name">Caramel Sauce</span>
+        <span class="custom-option__price">+$2.50</span>
+      </label>
+    </div>
+
+    <!-- Extras -->
+    <div class="custom-section">
+      <h3 class="custom-section__title">Extras</h3>
+      <label class="custom-option">
+        <input type="checkbox" class="custom-checkbox" data-price="3" />
+        <span class="custom-option__name">Extra Cream</span>
+        <span class="custom-option__price">+$3.00</span>
+      </label>
+      <label class="custom-option">
+        <input type="checkbox" class="custom-checkbox" data-price="3" />
+        <span class="custom-option__name">Extra Fruit</span>
+        <span class="custom-option__price">+$3.00</span>
+      </label>
+      <label class="custom-option">
+        <input type="checkbox" class="custom-checkbox" data-price="1" />
+        <span class="custom-option__name">Swap to Almond Milk</span>
+        <span class="custom-option__price">+$1.00</span>
+      </label>
+    </div>
+
+    
     <!-- ADD TO CART + WISHLIST -->
     <div class="cart-row">
       <button class="btn btn--primary cart-row__btn" id="add-to-cart">ADD TO CART</button>
       <button class="wishlist-btn" aria-label="Add to wishlist">&#9825;</button>
     </div>
-
-    <!-- DESCRIPTION -->
-    <p class="product-detail__desc">Chocolate pancakes, strawberries, cream, and chocolate ice cream.</p>
-    <p class="product-detail__addon">Add chocolate sauce</p>
 
   </main>
 

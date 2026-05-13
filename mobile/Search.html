@@ -1,11 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Search – Pancake On The Rocks</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    
+
+  <!-- PAGE TITLE -->
+  <div class="search-header">
+    <h1 class="search-header__title">Search Results</h1>
+    <span class="search-header__icon">&#128269;</span>
+  </div>
+
+  <main class="search-main">
+
+    <!-- SEARCH BAR -->
+    <div class="search-bar">
+      <input type="text" class="search-bar__input" placeholder="Pancakes..." id="search-input" />
+      <button class="search-bar__clear" id="clear-search">&#10005;</button>
+    </div>
+
+    <!-- FILTER PILLS -->
+    <div class="filter-row">
+      <button class="filter-btn filter-btn--active">All</button>
+      <button class="filter-btn">Sweet</button>
+      <button class="filter-btn">Savory</button>
+      <button class="filter-btn">Gluten-Free</button>
+    </div>
+
+    <!-- IMAGE GRID (2 featured images) -->
+    <div class="search-grid">
+      <a href="product.html" class="search-grid__item">
+        <img src="images/banana-pancakes.jpg" alt="Banana Pancakes" />
+      </a>
+      <a href="product.html" class="search-grid__item search-grid__item--tall">
+        <img src="images/chocolate-lava-cake.jpg" alt="Chocolate Lava Cake" />
+      </a>
+    </div>
+
+    <!-- FILTER ROW 2 -->
+    <div class="filter-row">
+      <button class="filter-btn">All</button>
+      <button class="filter-btn">Famous Pancakes</button>
+      <button class="filter-btn">Savory Crepes</button>
+    </div>
+
+    <!-- FILTER ROW 3 -->
+    <div class="filter-row filter-row--pill">
+      <button class="pill-btn pill-btn--active">Most popular</button>
+      <button class="pill-btn">Dinner</button>
+      <button class="pill-btn">Breakfast</button>
+    </div>
+
+    <!-- SEARCH RESULTS LIST -->
+    <section class="menu-list">
+
+      <a href="product.html" class="menu-item">
+        <img src="images/banana-pancakes.jpg" alt="Banana Pancakes" class="menu-item__img" />
+        <div class="menu-item__info">
+          <h3 class="menu-item__name">Banana Pancakes</h3>
+          <p class="menu-item__desc">Fluffy pancakes with maple syrup.</p>
+          <p class="menu-item__meta">$19.95 · 350 cal</p>
+        </div>
+      </a>
+
+      <a href="product.html" class="menu-item">
+        <img src="images/savory-crepes.jpg" alt="Savory Crepes" class="menu-item__img" />
+        <div class="menu-item__info">
+          <h3 class="menu-item__name">Savory Crepes</h3>
+          <p class="menu-item__desc">Filled with ham and cheese.</p>
+          <p class="menu-item__meta">$15.95 · 300 cal</p>
+        </div>
+      </a>
+
+      <a href="product.html" class="menu-item">
+        <img src="images/beef-ribs.jpg" alt="Beef Ribs" class="menu-item__img" />
+        <div class="menu-item__info">
+          <h3 class="menu-item__name">Beef Ribs</h3>
+          <p class="menu-item__desc">Slow-cooked ribs with BBQ sauce.</p>
+          <p class="menu-item__meta">$24.95 · 650 cal</p>
+        </div>
+      </a>
+
+      <a href="product.html" class="menu-item">
+        <img src="images/chocolate-lava-cake.jpg" alt="Chocolate Lava Cake" class="menu-item__img" />
+        <div class="menu-item__info">
+          <h3 class="menu-item__name">Chocolate Lava Cake</h3>
+          <p class="menu-item__desc">Rich chocolate cake with molten center.</p>
+          <p class="menu-item__meta">$9.95 · 400 cal</p>
+        </div>
+      </a>
+
+      <a href="product.html" class="menu-item">
+        <img src="images/orange-juice.jpg" alt="Fresh Orange Juice" class="menu-item__img" />
+        <div class="menu-item__info">
+          <h3 class="menu-item__name">Fresh Orange Juice</h3>
+          <p class="menu-item__desc">Freshly squeezed orange juice.</p>
+          <p class="menu-item__meta">$5.95 · 120 cal</p>
+        </div>
+      </a>
+
+    </section>
+
+  </main>
+
+  
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#8962;</span>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="search.html" class="bottom-nav__item bottom-nav__item--active">
+      <span class="bottom-nav__icon">&#128269;</span>
+      <span class="bottom-nav__label">Search</span>
+    </a>
+    <a href="#" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128276;</span>
+      <span class="bottom-nav__label">Notifications</span>
+    </a>
+    <a href="#" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128172;</span>
+      <span class="bottom-nav__label">Messages</span>
+    </a>
+    <a href="cart.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128722;</span>
+      <span class="bottom-nav__label">Cart</span>
+    </a>
+  </nav>
+
+  <script src="js/search.js"></script>
 </body>
 </html>
