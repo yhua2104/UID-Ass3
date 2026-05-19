@@ -31,9 +31,9 @@
     <div class="quantity-row">
       <span class="quantity-row__label">Quantity</span>
       <div class="quantity-row__controls">
-        <button class="quantity-btn" id="decrease">&#8743;</button>
+        <button class="quantity-btn" id="increase">&#8743;</button>
         <span class="quantity-row__number" id="quantity">1</span>
-        <button class="quantity-btn" id="increase">&#8744;</button>
+        <button class="quantity-btn" id="decrease">&#8744;</button>
       </div>
     </div>
     
@@ -123,6 +123,7 @@
   </nav>
 
   <script>
+    //Create multiple product detailed page
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
     console.log(productId);
@@ -159,13 +160,47 @@
       }
     };
 
-      
+    //Get the information of each product
     const product = products[productId];
     document.querySelector('.product-detail__name').textContent = product.name;
     document.querySelector('.product-detail__price').textContent = product.price;
     document.querySelector('.product-detail__desc').textContent = product.desc;
     document.querySelector('.product-hero__img').src = product.image;
 
+
+    //Quantity btn
+    let quantity = 1;
+    const increaseBtn = document.querySelector('#increase')
+    const quantityDisplay = document.querySelector('#quantity')
+    const decreaseBtn = document.querySelector('#decrease')
+
+    increaseBtn.addEventListener('click', () => {
+      quantity ++;
+      quantityDisplay.textContent = quantity;
+    })
+    decreaseBtn.addEventListener('click', () => {
+      if (quantity > 1){
+        quantity --;
+        quantityDisplay.textContent = quantity;
+      }
+    })
+
+    // Storage product information to add it to cart
+    const atcBtn = document.querySelector('#add-to-cart')
+    atcBtn.addEventListener('click', () => {
+      console.log('clicked')
+      const cartItem = {
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+    }
+    localStorage.setItem('cart', JSON.stringify(cartItem))
+    
+      window.location.href = 'cart.html';
+    })
+    
+    
+  
   </script>
 </body>
 </html>

@@ -96,7 +96,21 @@
       <span class="bottom-nav__label">Order</span>
     </a>
   </nav>
+  <script>
+    const cartItem = JSON.parse(localStorage.getItem('cart'))
+    console.log(cartItem)
+    const cartEmpty = document.querySelector('.cart-empty')
+    if (cartItem !== null) {
+      cartEmpty.style.display = 'none'
+      const card = document.createElement('div')
+      card.textContent = cartItem.name
+      const cartSection = document.querySelector('.cart-section')
+      cartSection.appendChild(card)
+    } else {
+      
+    }
+  </script>
 
-  <script src="js/cart.js"></script>
+
 </body>
 </html>
