@@ -122,6 +122,50 @@
     </a>
   </nav>
 
-  <script src="js/cart.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('id');
+    console.log(productId);
+    const products = {
+      'strawberry-pancakes': {
+        name: 'Strawberry Pancakes',
+        price: '$24.95',
+        desc: 'Fluffy pancakes with maple syrup.',
+        image: './img/strawberrypancake.png'
+      },
+      'banana-pancake': {
+        name: 'Banana Pancakes',
+        price: '$19.95',
+        desc: 'Fluffy pancakes with maple syrup.',
+        image: './img/bananapancake.png'
+      },
+      'savory-crepes': {
+        name: 'Savory Crepes',
+        price: '$15.95',
+        desc: 'Filled with ham and cheese.',
+        image: './img/savorycrepes.png'
+      },
+      'chocolate-lava-cake': {
+        name: 'Chocolate Lava Cake',
+        price: '$9.95',
+        desc: 'Rich chocolate cake with molten center.',
+        image: './img/chcolatelavacake.png'
+      },
+      'coffee-pancake': {
+        name: 'Coffee Pancakes',
+        price: '$5.95',
+        desc: 'Freshly squeezed orange juice.',
+        image: './img/coffeepancake.png'
+      }
+    };
+
+      
+    const product = products[productId];
+    document.querySelector('.product-detail__name').textContent = product.name;
+    document.querySelector('.product-detail__price').textContent = product.price;
+    document.querySelector('.product-detail__desc').textContent = product.desc;
+    document.querySelector('.product-hero__img').src = product.image;
+
+  </script>
 </body>
 </html>
