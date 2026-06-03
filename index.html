@@ -8,6 +8,7 @@
 </head>
 <body>
 
+  
   <!-- HEADER -->
   <header class="header">
     <a href="index.html" class="header__icon">&#8962;</a>
@@ -24,9 +25,6 @@
       <!-- Wishlist -->
       <button class="hero__wishlist" aria-label="Add to wishlist">&#9825;</button>
 
-      <h1 class="hero__title">Pancake On The Rocks</h1>
-      <p class="hero__meta"><span class="hero__star">&#9733;</span> time: 24/7</p>
-      <p class="hero__address">22 PLAYFAIR ST, THE ROCKS</p>
 
       <!-- Hero banner image -->
       <div class="hero__banner">
@@ -52,35 +50,40 @@
     <!-- FEATURED PRODUCTS GRID -->
     <section class="featured">
       <div class="product-grid">
-        <a href="product.html?id=2" class="product-card">
+        <a href="product.html?id=strawberry-pancakes" class="product-card">
           <img src="./img/strawberrypancake.png" alt="stawberry Pancakes" class="product-card__img" />
           <h3 class="product-card__name">Strawberry Pancakes</h3>
-          <p class="product-card__price">$15</p>
+          <p class="product-card__price">$24.95</p>
         </a>
         
 
-        <a href="product.html?id=2" class="product-card">
+        <a href="product.html?id=chocolate-lava-cake" class="product-card">
           <img src="./img/chcolatelavacake.png" alt="Coffee Pancakes" class="product-card__img" />
           <h3 class="product-card__name">Chocolate Pancakes</h3>
-          <p class="product-card__price">$15</p>
+          <p class="product-card__price">$9.95</p>
         </a>
 
-        <a href="product.html?id=3" class="product-card">
+        <a href="product.html?id=banana-pancake" class="product-card">
           <img src="./img/bananapancake.png" alt="Banana Pancakes" class="product-card__img" />
           <h3 class="product-card__name">Banana Pancakes</h3>
-          <p class="product-card__price">$50</p>
+          <p class="product-card__price">$19.95</p>
         </a>
 
-        <a href="product.html?id=4" class="product-card">
+        <a href="product.html?id=coffee-pancake" class="product-card">
           <img src="./img/coffeepancake.png" alt="Coffee Pancakes" class="product-card__img" />
           <h3 class="product-card__name">Coffee Pancakes</h3>
-          <p class="product-card__price">$10</p>
+          <p class="product-card__price">$5.95</p>
         </a>
 
       </div>
     </section>
 
   </main>
+
+  <footer>
+      <p class="hero__meta"><span class="hero__star">&#9733;</span> time: 24/7</p>
+      <p class="hero__address">22 PLAYFAIR ST, THE ROCKS</p>
+  </footer>
 
   <!--BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
@@ -100,11 +103,19 @@
       <span class="bottom-nav__icon">&#128722;</span>
       <span class="bottom-nav__label">Cart</span>
     </a>
-    <a href="#" class="bottom-nav__item">
+    <a href="AI.html" class="bottom-nav__item">
       <span class="bottom-nav__icon">&#129534;</span>
-      <span class="bottom-nav__label">Order</span>
+      <span class="bottom-nav__label">AI</span>
     </a>
   </nav>
+  <script>
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('category-btn--active'));
+        btn.classList.add('category-btn--active');
+      });
+    });
+  </script>
 
 </body>
 </html>

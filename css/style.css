@@ -926,3 +926,295 @@ img {
   padding-bottom: 10px;
 }
 
+
+
+
+/* == AI PAGE == */
+
+.ai-page {
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;           /* fills full screen height */
+      overflow: hidden;
+    }
+
+    /* ── HEADER ── */
+    .ai-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px 12px;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      flex-shrink: 0;
+    }
+
+    .ai-header__back {
+      font-size: 22px;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .ai-header__avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .ai-header__info {
+      flex: 1;
+    }
+
+    .ai-header__name {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .ai-header__subtitle {
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    .ai-header__status {
+      width: 8px;
+      height: 8px;
+      background: #4CAF50;
+      border-radius: 50%;
+    }
+
+    /* ── CHAT MESSAGES AREA ── */
+    .ai-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .ai-messages__date {
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-text-muted);
+    }
+
+    /* ── INDIVIDUAL MESSAGE BUBBLES ── */
+    .msg {
+      display: flex;
+      gap: 8px;
+      align-items: flex-end;
+    }
+
+    .msg--user {
+      justify-content: flex-end;
+    }
+
+    .msg__avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .msg__content {
+      max-width: 72%;
+    }
+
+    .msg--user .msg__content {
+      max-width: 72%;
+    }
+
+    .msg__bubble {
+      padding: 12px 14px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Bot bubble: white, rounded bottom-left is flat */
+    .msg__bubble--bot {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: 18px 18px 18px 4px;
+      color: var(--color-text);
+    }
+
+    /* User bubble: dark red, rounded bottom-right is flat */
+    .msg__bubble--user {
+      background: var(--color-primary);
+      border-radius: 18px 18px 4px 18px;
+      color: var(--color-white);
+    }
+
+    .msg__time {
+      font-size: 11px;
+      color: #aaaaaa;
+      margin-top: 4px;
+      padding-left: 4px;
+    }
+
+    .msg--user .msg__time {
+      text-align: right;
+      padding-left: 0;
+      padding-right: 4px;
+    }
+
+    /* ── QUICK REPLY CHIPS ── */
+    .quick-replies {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-left: 40px;   /* aligns with bot bubble (avatar width + gap) */
+    }
+
+    .quick-reply-btn {
+      padding: 7px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--color-border);
+      background: var(--color-white);
+      font-size: 13px;
+      color: var(--color-primary);
+      cursor: pointer;
+      font-family: var(--font-main);
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .quick-reply-btn:hover,
+    .quick-reply-btn--selected {
+      background: var(--color-primary);
+      color: var(--color-white);
+      border-color: var(--color-primary);
+    }
+
+    /* ── RECOMMENDATION CARDS (inside chat) ── */
+    .reco-list {
+      padding-left: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .reco-card {
+      background: var(--color-white);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--color-border);
+      padding: 12px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .reco-card__img {
+      width: 60px;
+      height: 60px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: var(--color-border);   /* placeholder colour if img missing */
+    }
+
+    .reco-card__info {
+      flex: 1;
+    }
+
+    .reco-card__name {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+
+    .reco-card__desc {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      margin-bottom: 6px;
+    }
+
+    .reco-card__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .reco-card__price {
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--color-primary);
+    }
+
+    .reco-card__btn {
+      padding: 5px 14px;
+      background: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      border-radius: 20px;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: var(--font-main);
+    }
+
+    .reco-card__btn:hover {
+      opacity: 0.85;
+    }
+
+    /* ── INPUT BAR ── */
+    .ai-input-bar {
+      flex-shrink: 0;
+      background: var(--color-bg);
+      padding: 10px 16px;
+      border-top: 1px solid var(--color-border);
+      /* sits just above the fixed bottom nav */
+      margin-bottom: var(--bottom-nav-height);
+    }
+
+    .ai-input-bar__inner {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      background: var(--color-white);
+      border-radius: 30px;
+      padding: 10px 16px;
+      border: 1px solid var(--color-border);
+    }
+
+    .ai-input-bar__field {
+      flex: 1;
+      border: none;
+      background: none;
+      font-size: 14px;
+      color: var(--color-text);
+      outline: none;
+      font-family: var(--font-main);
+    }
+
+    .ai-input-bar__field::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .ai-input-bar__send {
+      width: 34px;
+      height: 34px;
+      background: var(--color-primary);
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--color-white);
+      font-size: 16px;
+    }
+
+    .ai-input-bar__send:hover {
+      opacity: 0.85;
+    }

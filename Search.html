@@ -32,10 +32,10 @@
 
     <!-- IMAGE GRID (2 featured images) -->
     <div class="search-grid">
-      <a href="product.html" class="search-grid__item">
+      <a href="product.html?id=banana-pancake" class="search-grid__item">
         <img src="./img/bananapancake.png" alt="Banana Pancakes" />
       </a>
-      <a href="product.html" class="search-grid__item search-grid__item--tall">
+      <a href="product.html?id=chocolate-lava-cake" class="search-grid__item search-grid__item--tall">
         <img src="./img/chcolatelavacake.png" alt="Chocolate Lava Cake" />
       </a>
     </div>
@@ -61,7 +61,7 @@
         <img src="./img/bananapancake.png" alt="Banana Pancakes" class="menu-item__img" />
         <div class="menu-item__info">
           <h3 class="menu-item__name">Banana Pancakes</h3>
-          <p class="menu-item__desc">Fluffy pancakes with maple syrup.</p>
+          <p class="menu-item__desc">Caramelised banana, honey drizzle.</p>
           <p class="menu-item__meta">$19.95 · 350 cal</p>
         </div>
       </a>
@@ -70,16 +70,55 @@
         <img src="./img/savorycrepes.png" alt="Savory Crepes" class="menu-item__img" />
         <div class="menu-item__info">
           <h3 class="menu-item__name">Savory Crepes</h3>
-          <p class="menu-item__desc">Filled with ham and cheese.</p>
+          <p class="menu-item__desc">Filled with blackberries and cheese.</p>
           <p class="menu-item__meta">$15.95 · 300 cal</p>
         </div>
       </a>
 
-      <a href="product.html?id=chocolate-lava-cake" class="menu-item">
+      <a href="product.html?id=strawberry-pancakes" class="menu-item">
         <img src="./img/strawberrypancake.png" alt="Stawberry Pancakes" class="menu-item__img" />
         <div class="menu-item__info">
           <h3 class="menu-item__name">Stawberry Pancakes</h3>
-          <p class="menu-item__desc">Slow-cooked ribs with BBQ sauce.</p>
+          <p class="menu-item__desc">Fresh berries, cream, maple syrup</p>
+          <p class="menu-item__meta">$24.95 · 650 cal</p>
+        </div>
+      </a>
+
+
+      <a href="product.html?id=coffee-pancake" class="menu-item">
+        <img src="./img/coffeepancake.png" alt="Coffee Pancakes" class="menu-item__img" />
+        <div class="menu-item__info">
+          <h3 class="menu-item__name">Coffee Pancakes</h3>
+          <p class="menu-item__desc">Freshly squeezed orange juice.</p>
+          <p class="menu-item__meta">$5.95 · 120 cal</p>
+        </div>
+      </a>
+      <!-- SEARCH RESULTS LIST -->
+    <section class="menu-list">
+
+      <a href="product.html?id=banana-pancake" class="menu-item">
+        <img src="./img/bananapancake.png" alt="Banana Pancakes" class="menu-item__img" />
+        <div class="menu-item__info">
+          <h3 class="menu-item__name">Banana Pancakes</h3>
+          <p class="menu-item__desc">Caramelised banana, honey drizzle.</p>
+          <p class="menu-item__meta">$19.95 · 350 cal</p>
+        </div>
+      </a>
+
+      <a href="product.html?id=savory-crepes" class="menu-item">
+        <img src="./img/savorycrepes.png" alt="Savory Crepes" class="menu-item__img" />
+        <div class="menu-item__info">
+          <h3 class="menu-item__name">Savory Crepes</h3>
+          <p class="menu-item__desc">Filled with blackberries and cheese.</p>
+          <p class="menu-item__meta">$15.95 · 300 cal</p>
+        </div>
+      </a>
+
+      <a href="product.html?id=strawberry-pancakes" class="menu-item">
+        <img src="./img/strawberrypancake.png" alt="Stawberry Pancakes" class="menu-item__img" />
+        <div class="menu-item__info">
+          <h3 class="menu-item__name">Stawberry Pancakes</h3>
+          <p class="menu-item__desc">Fresh berries, cream, maple syrup</p>
           <p class="menu-item__meta">$24.95 · 650 cal</p>
         </div>
       </a>
@@ -95,9 +134,7 @@
       </a>
 
     </section>
-    <script>
-      
-    </script>
+  
 
   </main>
 
@@ -121,12 +158,26 @@
       <span class="bottom-nav__icon">&#128722;</span>
       <span class="bottom-nav__label">Cart</span>
     </a>
-    <a href="#" class="bottom-nav__item">
+    <a href="AI.html" class="bottom-nav__item">
       <span class="bottom-nav__icon">&#129534;</span>
-      <span class="bottom-nav__label">Order</span>
+      <span class="bottom-nav__label">AI</span>
     </a>
   </nav>
 
-  <script src="js/search.js"></script>
+  <script>
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-btn--active'));
+        btn.classList.add('filter-btn--active');
+      });
+    });
+
+    document.querySelectorAll('.pill-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('pill-btn--active'));
+        btn.classList.add('pill-btn--active');
+      });
+    });
+  </script>
 </body>
 </html>

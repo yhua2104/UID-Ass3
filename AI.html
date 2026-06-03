@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Assistant – Pancake On The Rocks</title>
+  <link rel="stylesheet" href="css/style.css" />
+
+</head>
+<body class="ai-page">
+
+  <!-- HEADER -->
+  <header class="ai-header">
+    <a href="index.html" class="ai-header__back">&#8592;</a>
+    <div class="ai-header__avatar">🥞</div>
+    <div class="ai-header__info">
+      <p class="ai-header__name">Rocky</p>
+      <p class="ai-header__subtitle">Your Pancake Assistant</p>
+    </div>
+    <div class="ai-header__status"></div>
+  </header>
+
+  <!-- CHAT AREA -->
+  <main class="ai-messages" id="chatMessages">
+
+    <p class="ai-messages__date">Today</p>
+
+    <!-- Bot greeting -->
+    <div class="msg msg--bot">
+      <div class="msg__avatar">🥞</div>
+      <div class="msg__content">
+        <div class="msg__bubble msg__bubble--bot">
+          Hi! I'm Rocky 🥞 your personal Pancake On The Rocks assistant.<br><br>
+          I can help you find the perfect dish today. What are you in the mood for?
+        </div>
+        <p class="msg__time">10:23 AM</p>
+      </div>
+    </div>
+
+    <!-- Quick reply chips -->
+    <div class="quick-replies">
+      <button class="quick-reply-btn" onclick="selectChip(this, 'sweet')">🍓 Sweet options</button>
+      <button class="quick-reply-btn" onclick="selectChip(this, 'savory')">🥚 Savory picks</button>
+      <button class="quick-reply-btn" onclick="selectChip(this, 'top')">⭐ Top rated</button>
+    </div>
+
+    <!-- User reply -->
+    <div class="msg msg--user">
+      <div class="msg__content">
+        <div class="msg__bubble msg__bubble--user">Recommend something sweet for me!</div>
+        <p class="msg__time">10:24 AM</p>
+      </div>
+    </div>
+
+    <!-- Bot recommendation intro -->
+    <div class="msg msg--bot">
+      <div class="msg__avatar">🥞</div>
+      <div class="msg__content">
+        <div class="msg__bubble msg__bubble--bot">
+          Great choice! Here are my top sweet picks for you ✨
+        </div>
+        <p class="msg__time">10:24 AM</p>
+      </div>
+    </div>
+
+    <!-- Recommendation cards -->
+    <div class="reco-list">
+
+      <div class="reco-card">
+        <img src="./img/strawberrypancake.png" alt="Strawberry Pancakes" class="reco-card__img" />
+        <div class="reco-card__info">
+          <p class="reco-card__name">Strawberry Pancakes</p>
+          <p class="reco-card__desc">Fresh berries, cream, maple syrup</p>
+          <div class="reco-card__footer">
+            <span class="reco-card__price">$24.95</span>
+            <a href="product.html?id=strawberry-pancakes" class="reco-card__btn">View item</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="reco-card">
+        <img src="./img/chcolatelavacake.png" alt="Chocolate Pancakes" class="reco-card__img" />
+        <div class="reco-card__info">
+          <p class="reco-card__name">Chocolate Lava Cake</p>
+          <p class="reco-card__desc">Rich chocolate cake with molten center.</p>
+          <div class="reco-card__footer">
+            <span class="reco-card__price">$9.95</span>
+            <a href="product.html?id=chocolate-lava-cake" class="reco-card__btn">View item</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="reco-card">
+        <img src="./img/bananapancake.png" alt="Banana Pancakes" class="reco-card__img" />
+        <div class="reco-card__info">
+          <p class="reco-card__name">Banana Pancakes</p>
+          <p class="reco-card__desc">Caramelised banana, honey drizzle</p>
+          <div class="reco-card__footer">
+            <span class="reco-card__price">$19.95</span>
+            <a href="product.html?id=banana-pancake" class="reco-card__btn">View item</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- INPUT BAR -->
+  <div class="ai-input-bar">
+    <div class="ai-input-bar__inner">
+      <input
+        type="text"
+        class="ai-input-bar__field"
+        placeholder="Ask Rocky anything..."
+        id="userInput"
+      />
+      <button class="ai-input-bar__send" onclick="handleSend()" aria-label="Send message">&#10148;</button>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAVIGATION -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#127968;</span>
+      <span>Home</span>
+    </a>
+    <a href="search.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128269;</span>
+      <span>Search</span>
+    </a>
+    <a href="menu.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#127869;</span>
+      <span>Menu</span>
+    </a>
+    <a href="cart.html" class="bottom-nav__item">
+      <span class="bottom-nav__icon">&#128722;</span>
+      <span>Cart</span>
+    </a>
+    <a href="AI.html" class="bottom-nav__item bottom-nav__item--active">
+      <span class="bottom-nav__icon">&#129534;</span>
+      <span>AI</span>
+    </a>
+  </nav>
+
+  <script>
+    /* Highlight a quick reply chip when tapped */
+    function selectChip(btn, type) {
+      document.querySelectorAll('.quick-reply-btn').forEach(b => b.classList.remove('quick-reply-btn--selected'));
+      btn.classList.add('quick-reply-btn--selected');
+
+      if (type === 'sweet') {
+        botReply("I'd recommend our Strawberry Pancakes — fresh berries, whipped cream, and a drizzle of maple syrup. It's our most popular sweet dish! 🍓");
+      } else if (type === 'savory') {
+        botReply("For something savory, our Smoked Ribs are a fan favourite — slow-cooked and glazed in house sauce. 🍖 Pair it with a side salad!");
+      } else if (type === 'top') {
+        botReply("Our top rated dish right now is the Banana Pancakes — caramelised banana with honey drizzle. Customers love it! ⭐");
+      }
+    }
+
+    /* Typing indicator bubble */
+    function showTyping() {
+      const chat = document.getElementById('chatMessages');
+      const typing = document.createElement('div');
+      typing.className = 'msg msg--bot';
+      typing.id = 'typingIndicator';
+      typing.innerHTML = `
+        <div class="msg__avatar">🥞</div>
+        <div class="msg__content">
+          <div class="msg__bubble msg__bubble--bot" style="color:#888; font-style:italic;">Rocky is thinking…</div>
+        </div>`;
+      chat.appendChild(typing);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function removeTyping() {
+      const t = document.getElementById('typingIndicator');
+      if (t) t.remove();
+    }
+
+    /* Add a bot reply bubble after a short delay */
+    function botReply(text) {
+      showTyping();
+      setTimeout(() => {
+        removeTyping();
+        const chat = document.getElementById('chatMessages');
+        const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const msg = document.createElement('div');
+        msg.className = 'msg msg--bot';
+        msg.innerHTML = `
+          <div class="msg__avatar">🥞</div>
+          <div class="msg__content">
+            <div class="msg__bubble msg__bubble--bot">${text}</div>
+            <p class="msg__time">${now}</p>
+          </div>`;
+        chat.appendChild(msg);
+        chat.scrollTop = chat.scrollHeight;
+      }, 1200);
+    }
+
+    /* Send a user message and trigger a canned bot reply */
+    function handleSend() {
+      const input = document.getElementById('userInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const chat = document.getElementById('chatMessages');
+      const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      const userMsg = document.createElement('div');
+      userMsg.className = 'msg msg--user';
+      userMsg.innerHTML = `
+        <div class="msg__content">
+          <div class="msg__bubble msg__bubble--user">${text}</div>
+          <p class="msg__time">${now}</p>
+        </div>`;
+      chat.appendChild(userMsg);
+      chat.scrollTop = chat.scrollHeight;
+      input.value = '';
+
+      /* Canned responses based on keywords */
+      const lower = text.toLowerCase();
+      if (lower.includes('sweet') || lower.includes('pancake')) {
+        botReply("I'd recommend our Strawberry Pancakes — fresh berries, whipped cream, and a drizzle of maple syrup. It's our most popular sweet dish! 🍓");
+      } else if (lower.includes('savory') || lower.includes('savoury') || lower.includes('rib')) {
+        botReply("For something savory, our Smoked Ribs are a fan favourite — slow-cooked and glazed in house sauce. 🍖 Pair it with a side salad!");
+      } else if (lower.includes('drink') || lower.includes('coffee')) {
+        botReply("Our iced latte is the perfect match for pancakes. Made with single-origin espresso and oat milk! ☕");
+      } else if (lower.includes('allerg') || lower.includes('gluten') || lower.includes('vegan')) {
+        botReply("We have several allergen-friendly options! Please let our staff know when ordering and we'll take good care of you. 🌱");
+      } else {
+        botReply("That's a great question! I'm still learning, but our team would love to help. Feel free to call us or check the full menu. 😊");
+      }
+    }
+
+    /* Allow pressing Enter to send */
+    document.getElementById('userInput').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') handleSend();
+    });
+  </script>
+
+</body>
+</html>
