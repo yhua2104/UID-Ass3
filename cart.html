@@ -30,13 +30,6 @@
 </div>
 
 
-    <!-- PROMO CODE -->
-    <div class="promo">
-      <span class="promo__label">Add promo code</span>
-      <input type="text" class="promo-input" placeholder="Add promo code" id="promo-code" />
-      <button class="promo-apply-btn">Apply</button>
-    </div>
-
     <!-- ORDER SUMMARY -->
     <div class="order-summary">
       <div class="order-summary__header">
@@ -45,24 +38,16 @@
       </div>
 
       <div class="order-summary__row">
-        <span>Title</span>
-        <span>$1.00</span>
+        <span>Subtotal</span>
+        <span id="summary-subtotal">$0.00</span>
       </div>
       <div class="order-summary__row">
-        <span>Delivery Fee</span>
-        <span>$3.95</span>
-      </div>
-      <div class="order-summary__row">
-        <span>Discount</span>
-        <span class="order-summary__discount">-$5.00</span>
-      </div>
-      <div class="order-summary__row">
-        <span>Tax</span>
-        <span>$2.00</span>
+        <span>Tax (GST 10%)</span>
+        <span id="summary-tax">$0.00</span>
       </div>
       <div class="order-summary__row order-summary__row--total">
-        <span>Total</span>
-        <span>$39.80</span>
+        <span>Estimated Total</span>
+        <span id="summary-total">$0.00</span>
       </div>
     </div>
 
@@ -73,6 +58,7 @@
 
   </main>
 
+  
   <!--BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
     <a href="index.html" class="bottom-nav__item bottom-nav__item--active">
@@ -97,18 +83,76 @@
     </a>
   </nav>
   <script>
-    const cartItem = JSON.parse(localStorage.getItem('cart'))
-    console.log(cartItem)
-    const cartEmpty = document.querySelector('.cart-empty')
-    if (cartItem !== null) {
-      cartEmpty.style.display = 'none'
-      const card = document.createElement('div')
-      card.textContent = cartItem.name
-      const cartSection = document.querySelector('.cart-section')
-      cartSection.appendChild(card)
+    // 从 localStorage 读取购物车数组
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartEmpty = document.querySelector('.cart-empty');
+    const cartSection = document.querySelector('.cart-section');
+    const cartTitle = document.querySelector('.cart-header__title');
+
+    // 购物车为空时显示空状态，否则渲染商品卡片
+    if (cart.length === 0) {
+      cartEmpty.style.display = '';
     } else {
-      
+      cartEmpty.style.display = 'none';
+      cartTitle.textContent = `Your Cart (${cart.length} item${cart.length > 1 ? 's' : ''})`;
+
+      cart.forEach((item, index) => {
+        // 计算单件商品小计：(基础单价 + 配料加价总和) × 数量
+        const extras = item.extras || [];
+        const extrasTotal = extras.reduce((sum, e) => sum + e.price, 0);
+        const itemSubtotal = (parseFloat(item.price) + extrasTotal) * item.quantity;
+
+        const extrasHTML = extras.length > 0
+          ? `<p class="cart-item__desc">${extras.map(e => `${e.name} +$${e.price.toFixed(2)}`).join(' · ')}</p>`
+          : '';
+
+        const card = document.createElement('div');
+        card.className = 'cart-item';
+        card.style.cursor = 'pointer';
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.name}" class="cart-item__img" />
+          <div class="cart-item__info">
+            <div class="cart-item__top">
+              <span class="cart-item__name">${item.name}</span>
+              <span class="cart-item__price">$${itemSubtotal.toFixed(2)}</span>
+            </div>
+            ${extrasHTML}
+            <span class="cart-item__qty">Qty: ${item.quantity}</span>
+          </div>
+          <button class="cart-item__delete" aria-label="Remove item">&#10005;</button>
+        `;
+
+        // 点击卡片跳转到对应商品详情页（需要 item.id 存在）
+        if (item.id) {
+          card.addEventListener('click', () => {
+            window.location.href = `product.html?id=${item.id}`;
+          });
+        }
+
+        // 点击删除按钮：阻止冒泡，从数组中移除该项并刷新页面
+        card.querySelector('.cart-item__delete').addEventListener('click', (e) => {
+          e.stopPropagation();
+          cart.splice(index, 1);
+          localStorage.setItem('cart', JSON.stringify(cart));
+          location.reload();
+        });
+
+        cartSection.appendChild(card);
+      });
     }
+
+    // 计算 Order Summary：subtotal、GST 10%、预估总价
+    const subtotal = cart.reduce((sum, item) => {
+      const extras = item.extras || [];
+      const extrasTotal = extras.reduce((eSum, e) => eSum + e.price, 0);
+      return sum + (parseFloat(item.price) + extrasTotal) * item.quantity;
+    }, 0);
+    const tax = subtotal * 0.1;
+    const total = subtotal + tax;
+
+    document.getElementById('summary-subtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('summary-tax').textContent = '$' + tax.toFixed(2);
+    document.getElementById('summary-total').textContent = '$' + total.toFixed(2);
   </script>
 
 

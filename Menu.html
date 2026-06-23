@@ -12,10 +12,18 @@
   <header class="header">
     <a href="index.html" class="header__icon">&#8962;</a>
     <nav class="header__nav">
-      <a href="#" class="header__icon">&#9776;</a>
-      <a href="search.html" class="header__icon">&#128269;</a>
+      <a href="#" class="header__icon" id="menu-toggle">&#9776;</a>
+      <a href="Search.html" class="header__icon">&#128269;</a>
     </nav>
   </header>
+
+  <div class="nav-drawer" id="nav-drawer">
+    <a href="index.html" class="nav-drawer__link">Home</a>
+    <a href="Menu.html" class="nav-drawer__link">Menu</a>
+    <a href="Search.html" class="nav-drawer__link">Search</a>
+    <a href="cart.html" class="nav-drawer__link">Cart</a>
+    <a href="AI.html" class="nav-drawer__link">AI Assistant</a>
+  </div>
 
   <main>
 
@@ -63,9 +71,9 @@
       </a>
 
       <a href="product.html?id=strawberry-pancakes" class="menu-item">
-        <img src="./img/strawberrypancake.png" alt="Beef Ribs" class="menu-item__img" />
+        <img src="./img/strawberrypancake.png" alt="Strawberry Pancakes" class="menu-item__img" />
         <div class="menu-item__info">
-          <h3 class="menu-item__name">Stawberry Pancakes</h3>
+          <h3 class="menu-item__name">Strawberry Pancakes</h3>
           <p class="menu-item__desc">Fresh berries, cream, maple syrup</p>
           <p class="menu-item__meta">$24.95 · 650 cal</p>
         </div>
@@ -106,9 +114,9 @@
       </a>
 
       <a href="product.html?id=strawberry-pancakes" class="menu-item">
-        <img src="./img/strawberrypancake.png" alt="Beef Ribs" class="menu-item__img" />
+        <img src="./img/strawberrypancake.png" alt="Strawberry Pancakes" class="menu-item__img" />
         <div class="menu-item__info">
-          <h3 class="menu-item__name">Stawberry Pancakes</h3>
+          <h3 class="menu-item__name">Strawberry Pancakes</h3>
           <p class="menu-item__desc">Fresh berries, cream, maple syrup</p>
           <p class="menu-item__meta">$24.95 · 650 cal</p>
         </div>
@@ -135,17 +143,51 @@
 
   </main>
 
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <p class="site-footer__brand-name">Pancakes on the Rocks</p>
+        <p class="site-footer__slogan">Sydney's iconic pancake house since 1975</p>
+      </div>
+      <div class="site-footer__col">
+        <h3 class="site-footer__title">Visit Us</h3>
+        <p class="site-footer__text">22 Playfair Street<br>The Rocks, Sydney NSW 2000</p>
+        <p class="site-footer__text">02 9247 6371</p>
+        <p class="site-footer__text">Open 24 hours, 7 days</p>
+      </div>
+      <div class="site-footer__col">
+        <h3 class="site-footer__title">Explore</h3>
+        <nav class="site-footer__nav">
+          <a href="Menu.html" class="site-footer__link">Menu</a>
+          <a href="Search.html" class="site-footer__link">Search</a>
+          <a href="cart.html" class="site-footer__link">Cart</a>
+          <a href="AI.html" class="site-footer__link">AI Assistant</a>
+        </nav>
+      </div>
+      <div class="site-footer__col">
+        <h3 class="site-footer__title">Follow Us</h3>
+        <div class="site-footer__social">
+          <a href="#" class="site-footer__social-link">&#128248; Instagram</a>
+          <a href="#" class="site-footer__social-link">&#128214; Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__copy">
+      <p>&#169; 2026 Pancakes on the Rocks. All rights reserved.</p>
+    </div>
+  </footer>
+
  <!--BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
     <a href="index.html" class="bottom-nav__item bottom-nav__item--active">
       <span class="bottom-nav__icon">&#127968;</span>
       <span class="bottom-nav__label">Home</span>
     </a>
-    <a href="search.html" class="bottom-nav__item">
+    <a href="Search.html" class="bottom-nav__item">
       <span class="bottom-nav__icon">&#128269;</span>
       <span class="bottom-nav__label">Search</span>
     </a>
-    <a href="menu.html" class="bottom-nav__item">
+    <a href="Menu.html" class="bottom-nav__item">
       <span class="bottom-nav__icon">&#127869;</span>
       <span class="bottom-nav__label">Menu</span>
     </a>
@@ -160,18 +202,38 @@
   </nav>
 
   <script>
+    // 分类过滤按钮：高亮当前选中项（视觉效果，未实现实际筛选）
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('filter-btn--active'));
-      btn.classList.add('filter-btn--active');
+        btn.classList.add('filter-btn--active');
       });
     });
 
     document.querySelectorAll('.pill-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('pill-btn--active'));
-      btn.classList.add('pill-btn--active');
+        btn.classList.add('pill-btn--active');
       });
+    });
+  </script>
+
+  <script>
+    // 汉堡菜单：点击按钮切换抽屉，点击抽屉外区域自动关闭
+    const menuToggle = document.getElementById('menu-toggle');
+    const navDrawer = document.getElementById('nav-drawer');
+
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navDrawer.classList.toggle('nav-drawer--open');
+    });
+
+    navDrawer.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    document.addEventListener('click', () => {
+      navDrawer.classList.remove('nav-drawer--open');
     });
   </script>
 

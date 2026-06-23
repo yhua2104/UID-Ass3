@@ -10,9 +10,9 @@
 
   <!-- PRODUCT IMAGE -->
   <div class="product-hero">
-    <img src="images/delicious-pancakes.jpg" alt="Product Image" class="product-hero__img" />
+    <img src="./img/strawberrypancake.png" alt="Product Image" class="product-hero__img" />
     <!-- Back button -->
-    <a onclick="history.back()" class="product-hero__back" style="cursor:pointer;">&#8592;</a>
+    <a onclick="history.back()" class="product-hero__back">&#8592;</a>
   </div>
 
   <main class="product-detail">
@@ -98,17 +98,51 @@
 
   </main>
 
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <p class="site-footer__brand-name">Pancakes on the Rocks</p>
+        <p class="site-footer__slogan">Sydney's iconic pancake house since 1975</p>
+      </div>
+      <div class="site-footer__col">
+        <h3 class="site-footer__title">Visit Us</h3>
+        <p class="site-footer__text">22 Playfair Street<br>The Rocks, Sydney NSW 2000</p>
+        <p class="site-footer__text">02 9247 6371</p>
+        <p class="site-footer__text">Open 24 hours, 7 days</p>
+      </div>
+      <div class="site-footer__col">
+        <h3 class="site-footer__title">Explore</h3>
+        <nav class="site-footer__nav">
+          <a href="Menu.html" class="site-footer__link">Menu</a>
+          <a href="Search.html" class="site-footer__link">Search</a>
+          <a href="cart.html" class="site-footer__link">Cart</a>
+          <a href="AI.html" class="site-footer__link">AI Assistant</a>
+        </nav>
+      </div>
+      <div class="site-footer__col">
+        <h3 class="site-footer__title">Follow Us</h3>
+        <div class="site-footer__social">
+          <a href="#" class="site-footer__social-link">&#128248; Instagram</a>
+          <a href="#" class="site-footer__social-link">&#128214; Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__copy">
+      <p>&#169; 2026 Pancakes on the Rocks. All rights reserved.</p>
+    </div>
+  </footer>
+
   <!--BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
     <a href="index.html" class="bottom-nav__item bottom-nav__item--active">
       <span class="bottom-nav__icon">&#127968;</span>
       <span class="bottom-nav__label">Home</span>
     </a>
-    <a href="search.html" class="bottom-nav__item">
+    <a href="Search.html" class="bottom-nav__item">
       <span class="bottom-nav__icon">&#128269;</span>
       <span class="bottom-nav__label">Search</span>
     </a>
-    <a href="menu.html" class="bottom-nav__item">
+    <a href="Menu.html" class="bottom-nav__item">
       <span class="bottom-nav__icon">&#127869;</span>
       <span class="bottom-nav__label">Menu</span>
     </a>
@@ -124,52 +158,51 @@
 
 
   <script>
-    //Create multiple product detailed page
+    // 从 URL 参数读取商品 id，动态渲染对应商品详情
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
-    console.log(productId);
     const products = {
       'strawberry-pancakes': {
         name: 'Strawberry Pancakes',
-        price: '$24.95',
+        price: 24.95,
         desc: 'Fluffy pancakes with maple syrup.',
         image: './img/strawberrypancake.png'
       },
       'banana-pancake': {
         name: 'Banana Pancakes',
-        price: '$19.95',
+        price: 19.95,
         desc: 'Fluffy pancakes with maple syrup.',
         image: './img/bananapancake.png'
       },
       'savory-crepes': {
         name: 'Savory Crepes',
-        price: '$15.95',
+        price: 15.95,
         desc: 'Filled with ham and cheese.',
         image: './img/savorycrepes.png'
       },
       'chocolate-lava-cake': {
         name: 'Chocolate Lava Cake',
-        price: '$9.95',
+        price: 9.95,
         desc: 'Rich chocolate cake with molten center.',
         image: './img/chcolatelavacake.png'
       },
       'coffee-pancake': {
         name: 'Coffee Pancakes',
-        price: '$5.95',
+        price: '5.95',
         desc: 'Freshly squeezed orange juice.',
         image: './img/coffeepancake.png'
       }
     };
 
-    //Get the information of each product
+    // 将商品数据填入页面各元素
     const product = products[productId];
     document.querySelector('.product-detail__name').textContent = product.name;
-    document.querySelector('.product-detail__price').textContent = product.price;
+    document.querySelector('.product-detail__price').textContent = '$' + product.price;
     document.querySelector('.product-detail__desc').textContent = product.desc;
     document.querySelector('.product-hero__img').src = product.image;
 
 
-    //Quantity btn
+    // 数量加减按钮
     let quantity = 1;
     const increaseBtn = document.querySelector('#increase')
     const quantityDisplay = document.querySelector('#quantity')
@@ -186,20 +219,57 @@
       }
     })
 
-    // Storage product information to add it to cart
-    const atcBtn = document.querySelector('#add-to-cart')
+    // 加入购物车：收集已勾选的配料，连同商品信息一起写入 localStorage
+    const atcBtn = document.querySelector('#add-to-cart');
     atcBtn.addEventListener('click', () => {
-      console.log('clicked')
+      const extras = [];
+      document.querySelectorAll('.custom-checkbox').forEach(cb => {
+        if (cb.checked) {
+          extras.push({
+            name: cb.closest('label').querySelector('.custom-option__name').textContent,
+            price: parseFloat(cb.dataset.price)
+          });
+        }
+      });
+
       const cartItem = {
-      name: product.name,
-      price: product.price,
-      quantity: quantity,
-    }
-    localStorage.setItem('cart', JSON.stringify(cartItem))
-    
+        id: productId,
+        name: product.name,
+        price: product.price,   // 基础单价，不含配料
+        quantity: quantity,
+        image: product.image,
+        extras: extras
+      };
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.push(cartItem);
+      localStorage.setItem('cart', JSON.stringify(cart));
+
       window.location.href = 'cart.html';
-    })
-    
+    });
+
+    // 实时计价：(基础单价 + 配料加价总和) × 数量
+    const basePrice = product.price;
+    const priceDisplay = document.querySelector('.product-detail__price');
+
+    function updatePrice() {
+      let extrasTotal = 0;
+      document.querySelectorAll('.custom-checkbox').forEach(cb => {
+        if (cb.checked) {
+          extrasTotal += parseFloat(cb.dataset.price);
+        }
+      });
+      const total = (basePrice + extrasTotal) * quantity;
+      priceDisplay.textContent = '$' + total.toFixed(2);
+    }
+
+    // 勾选配料或改变数量时重新计价
+    document.querySelectorAll('.custom-checkbox').forEach(cb => {
+      cb.addEventListener('change', updatePrice);
+    });
+    increaseBtn.addEventListener('click', updatePrice);
+    decreaseBtn.addEventListener('click', updatePrice);
+    updatePrice();
     
   
   </script>

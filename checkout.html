@@ -81,18 +81,32 @@
       <button class="promo-apply-btn">Apply</button>
     </div>
 
+    <!-- ORDER ITEMS -->
+    <div class="checkout-section" id="checkout-items">
+      <h2 class="checkout-section__title">Your Order</h2>
+    </div>
+
     <!-- ORDER TOTAL -->
     <div class="checkout-total">
       <div class="checkout-total__row">
         <span>Subtotal</span>
-        <span id="Subtotal">$40.00</span>
+        <span id="co-subtotal">$0.00</span>
       </div>
       <div class="checkout-total__row">
-        <span>Delivery</span>
+        <span>Delivery Fee</span>
+        <span id="co-delivery">$3.95</span>
+      </div>
+      <div class="checkout-total__row">
+        <span>Discount</span>
+        <span id="co-discount">-$5.00</span>
+      </div>
+      <div class="checkout-total__row">
+        <span>Tax (GST 10%)</span>
+        <span id="co-tax">$0.00</span>
       </div>
       <div class="checkout-total__row checkout-total__row--bold">
         <span>Estimated Total</span>
-        <span id="estimated-total">$45.99</span>
+        <span id="co-total">$0.00</span>
       </div>
     </div>
 
@@ -103,17 +117,51 @@
 
   </main>
 
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <p class="site-footer__brand-name">Pancakes on the Rocks</p>
+        <p class="site-footer__slogan">Sydney's iconic pancake house since 1975</p>
+      </div>
+      <div class="site-footer__col">
+        <h3 class="site-footer__title">Visit Us</h3>
+        <p class="site-footer__text">22 Playfair Street<br>The Rocks, Sydney NSW 2000</p>
+        <p class="site-footer__text">02 9247 6371</p>
+        <p class="site-footer__text">Open 24 hours, 7 days</p>
+      </div>
+      <div class="site-footer__col">
+        <h3 class="site-footer__title">Explore</h3>
+        <nav class="site-footer__nav">
+          <a href="Menu.html" class="site-footer__link">Menu</a>
+          <a href="Search.html" class="site-footer__link">Search</a>
+          <a href="cart.html" class="site-footer__link">Cart</a>
+          <a href="AI.html" class="site-footer__link">AI Assistant</a>
+        </nav>
+      </div>
+      <div class="site-footer__col">
+        <h3 class="site-footer__title">Follow Us</h3>
+        <div class="site-footer__social">
+          <a href="#" class="site-footer__social-link">&#128248; Instagram</a>
+          <a href="#" class="site-footer__social-link">&#128214; Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__copy">
+      <p>&#169; 2026 Pancakes on the Rocks. All rights reserved.</p>
+    </div>
+  </footer>
+
   <!--BOTTOM NAVIGATION -->
   <nav class="bottom-nav">
     <a href="index.html" class="bottom-nav__item bottom-nav__item--active">
       <span class="bottom-nav__icon">&#127968;</span>
       <span class="bottom-nav__label">Home</span>
     </a>
-    <a href="search.html" class="bottom-nav__item">
+    <a href="Search.html" class="bottom-nav__item">
       <span class="bottom-nav__icon">&#128269;</span>
       <span class="bottom-nav__label">Search</span>
     </a>
-    <a href="menu.html" class="bottom-nav__item">
+    <a href="Menu.html" class="bottom-nav__item">
       <span class="bottom-nav__icon">&#127869;</span>
       <span class="bottom-nav__label">Menu</span>
     </a>
@@ -121,12 +169,74 @@
       <span class="bottom-nav__icon">&#128722;</span>
       <span class="bottom-nav__label">Cart</span>
     </a>
-    <a href="#" class="bottom-nav__item">
+    <a href="AI.html" class="bottom-nav__item">
       <span class="bottom-nav__icon">&#129534;</span>
       <span class="bottom-nav__label">AI</span>
     </a>
   </nav>
 
-  <script src="js/checkout.js"></script>
+  <script>
+    // 从 localStorage 读取购物车数组
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // 渲染订单商品列表（只读，不可删除）
+    const itemsContainer = document.getElementById('checkout-items');
+    cart.forEach(item => {
+      const extras = item.extras || [];
+      const extrasTotal = extras.reduce((sum, e) => sum + e.price, 0);
+      const itemSubtotal = (parseFloat(item.price) + extrasTotal) * item.quantity;
+      const extrasHTML = extras.length > 0
+        ? `<p class="cart-item__desc">${extras.map(e => `${e.name} +$${e.price.toFixed(2)}`).join(' · ')}</p>`
+        : '';
+
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" class="cart-item__img" />
+        <div class="cart-item__info">
+          <div class="cart-item__top">
+            <span class="cart-item__name">${item.name}</span>
+            <span class="cart-item__price">$${itemSubtotal.toFixed(2)}</span>
+          </div>
+          ${extrasHTML}
+          <span class="cart-item__qty">Qty: ${item.quantity}</span>
+        </div>
+      `;
+      itemsContainer.appendChild(row);
+    });
+
+    // 计算结账汇总：subtotal + 配送费 + GST 10% - 折扣(subtotal ≥ $20 时 -$5)
+    const subtotal = cart.reduce((sum, item) => {
+      const extras = item.extras || [];
+      const extrasTotal = extras.reduce((eSum, e) => eSum + e.price, 0);
+      return sum + (parseFloat(item.price) + extrasTotal) * item.quantity;
+    }, 0);
+    const tax = subtotal * 0.1;
+    const deliveryFee = 3.95;
+    const discount = subtotal >= 20 ? 5.00 : 0;
+    const total = subtotal + tax + deliveryFee - discount;
+
+    document.getElementById('co-subtotal').textContent = '$' + subtotal.toFixed(2);
+    document.getElementById('co-delivery').textContent = '$' + deliveryFee.toFixed(2);
+    document.getElementById('co-discount').textContent = discount > 0 ? '-$' + discount.toFixed(2) : '$0.00';
+    document.getElementById('co-tax').textContent = '$' + tax.toFixed(2);
+    document.getElementById('co-total').textContent = '$' + total.toFixed(2);
+
+    // 点击 PAY NOW：显示下单成功弹窗并清空购物车
+    document.getElementById('pay-now').addEventListener('click', () => {
+      const overlay = document.createElement('div');
+      overlay.className = 'success-overlay';
+      overlay.innerHTML = `
+        <div class="success-modal">
+          <div class="success-modal__icon">🥞</div>
+          <h2 class="success-modal__title">Order Placed!</h2>
+          <p class="success-modal__text">Your pancakes are on their way.<br>Estimated delivery: 45 mins.</p>
+          <a href="index.html" class="success-modal__btn">Back to Home</a>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+      localStorage.removeItem('cart');
+    });
+  </script>
 </body>
 </html>
